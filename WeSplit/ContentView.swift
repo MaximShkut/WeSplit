@@ -33,6 +33,14 @@ struct ContentView: View {
         return grandTotal
     }
     
+    var has0PercentTips: Bool{
+        if tipPercentage == 0{
+            return true
+        }
+        
+        return false
+    }
+    
     @FocusState private var amountIsFocused: Bool
     
     var body: some View {
@@ -66,6 +74,7 @@ struct ContentView: View {
                 }
                 Section(header: Text("Total amount")){
                     Text(totalAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                        .foregroundColor(has0PercentTips ? .red : .black)
                 }
             }
             .navigationTitle("WeSplit")
